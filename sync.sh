@@ -29,7 +29,9 @@ echo "    已写入: $TYPORA_THEME_DIR/newsprint.user.css"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   defaults write abnerworks.Typora theme "Newsprint" 2>/dev/null || true
-  echo "    已将 Typora 默认主题切换为: Newsprint"
+  defaults delete abnerworks.Typora backgroundColor 2>/dev/null || true
+  defaults delete abnerworks.Typora backgroundColor2 2>/dev/null || true
+  echo "    已将 Typora 默认主题切换为: Newsprint（并清除旧主题背景色缓存）"
 fi
 
 echo "==> 同步完成！"

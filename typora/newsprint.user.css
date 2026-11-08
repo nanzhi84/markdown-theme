@@ -3,19 +3,26 @@
  * 同步自 VS Code Markdown Preview Enhanced (newsprint.css + style.less)
  * ========================================================================== */
 
-:root {
-  --bg-color: #F7F3E6;
-}
-
-/* 1. 全局背景色（纸张米黄色 #F7F3E6）与行间距 (1.75) */
+:root,
 html,
 body {
-  background-color: #F7F3E6;
+  --bg-color: #F7F3E6 !important;
+}
+
+/* 1. 全局背景色（纸张米黄色 #F7F3E6）与行间距 (1.75)
+ * 使用 !important 覆盖 Typora macOS 启动时 initBackground 注入到 body.style 的缓存内联背景色 */
+html,
+body,
+#write {
+  background-color: #F7F3E6 !important;
   line-height: 1.75;
 }
 
 /* 同步 Typora 侧边栏、标题栏、弹窗与复选框底色 */
 #typora-sidebar,
+.sidebar-menu,
+#file-library,
+#file-library-tree,
 .modal-content,
 .megamenu-menu,
 #top-titlebar,
@@ -23,11 +30,7 @@ body {
 .megamenu-content,
 #write div.md-toc-tooltip,
 .md-task-list-item > input:before {
-  background-color: #F7F3E6;
-}
-
-#write {
-  line-height: 1.75;
+  background-color: #F7F3E6 !important;
 }
 
 #write p {
