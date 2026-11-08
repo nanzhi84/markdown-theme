@@ -4,13 +4,13 @@
  * ========================================================================== */
 
 :root {
-  --bg-color: #FCFCFB;
+  --bg-color: #F7F3E6;
 }
 
-/* 1. 全局背景色 (#FCFCFB) 与行间距 (1.75) */
+/* 1. 全局背景色（纸张米黄色 #F7F3E6）与行间距 (1.75) */
 html,
 body {
-  background-color: #FCFCFB;
+  background-color: #F7F3E6;
   line-height: 1.75;
 }
 
@@ -23,7 +23,7 @@ body {
 .megamenu-content,
 #write div.md-toc-tooltip,
 .md-task-list-item > input:before {
-  background-color: #FCFCFB;
+  background-color: #F7F3E6;
 }
 
 #write {
