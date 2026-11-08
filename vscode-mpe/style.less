@@ -43,15 +43,20 @@ body {
     padding-left: 1.8em;
   }
 
-  // 4. 修复代码块首行缩进问题
+  // 4. 行内代码圆角与内边距显式固化（与 VS Code Webview 默认层叠加效果一致），并修复多行代码块首行缩进问题
+  code {
+    padding: 1px 1ch;
+    border-radius: 4px;
+  }
+
   // 原因：newsprint.css 设置了 `body code { padding-left: 1ch; padding-right: 1ch; }`，但未在 `body pre code` 中清除内边距。
   // 代码块中的 <code> 作为行内元素跨行渲染时，浏览器只在首行左侧保留 1ch 边距，导致首行呈现类似缩进一个字符的假象。
   pre {
     text-indent: 0;
 
     code {
-      padding-left: 0;
-      padding-right: 0;
+      padding: 0;
+      border-radius: 0;
       text-indent: 0;
     }
   }

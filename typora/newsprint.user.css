@@ -9,12 +9,19 @@ body {
   --bg-color: #F7F3E6 !important;
 }
 
-/* 1. 全局背景色（纸张米黄色 #F7F3E6）与行间距 (1.75)
- * 使用 !important 覆盖 Typora macOS 启动时 initBackground 注入到 body.style 的缓存内联背景色 */
+/* 1. 全局背景色（纸张米黄色 #F7F3E6）、字体渲染与行间距 (1.75)
+ * - 使用 !important 覆盖 Typora macOS 启动时 initBackground 注入到 body.style 的缓存内联背景色
+ * - 还原 -webkit-font-smoothing: auto（覆盖 Typora newsprint.css 默认的 antialiased 细字渲染）
+ * - 字体对齐 VS Code MPE：英文/数字使用 PT Serif 衬线体，中文回退到系统黑体（PingFang SC），避免 Typora 末尾 serif 强制将中文变成细扁宋体 */
+html {
+  -webkit-font-smoothing: auto !important;
+}
+
 html,
 body,
 #write {
   background-color: #F7F3E6 !important;
+  font-family: 'PT Serif', 'Times New Roman', Times, 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.75;
 }
 
@@ -69,25 +76,36 @@ body,
   padding-left: 1.8em;
 }
 
-/* 对齐 MPE newsprint.css 的引用块底色与行内代码内边距 */
+/* 对齐 MPE newsprint.css 的引用块底色与行内代码样式
+ * - VS Code Webview 默认样式为 code 提供 padding: 1px 3px; border-radius: 4px;
+ *   叠加 MPE newsprint.css 的 padding-left/right: 1ch 后实际为 padding: 1px 1ch; border-radius: 4px;
+ * - MPE 中 code 的 var(--monaco-monospace-font) 未在根部定义，自动继承 body 的 PT Serif 衬线体，
+ *   而 Typora base.css 强制使用了 Courier 等宽字体，导致反引号代码又宽又扁且无圆角 */
 #write blockquote {
   background-color: #e6e4dc;
 }
 
-#write code {
-  padding-left: 1ch;
-  padding-right: 1ch;
+#write code,
+#write tt {
+  font-family: 'PT Serif', 'Times New Roman', Times, 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #dadada;
+  padding: 1px 1ch;
+  border-radius: 4px;
 }
 
-/* 4. 修复代码块首行缩进问题 */
+/* 4. 修复代码块首行缩进并保持多行代码块为等宽字体 */
 #write pre,
-#write .md-fences {
+#write .md-fences,
+#write pre code,
+#write .md-fences code {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
   text-indent: 0;
 }
 
 #write pre code {
-  padding-left: 0;
-  padding-right: 0;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
   text-indent: 0;
 }
 
