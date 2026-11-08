@@ -1,0 +1,10 @@
+{
+  "workbench.editorAssociations": {
+    "*.md": "markdown-preview-enhanced"
+  },
+  "markdown-preview-enhanced.previewTheme": "newsprint.css",
+  "markdown-preview-enhanced.enablePreviewZenMode": true,
+  "markdown-preview-enhanced.enableHTML5Embed": true,
+  "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+  "markdown-preview-enhanced.enableTypographer": true
+}

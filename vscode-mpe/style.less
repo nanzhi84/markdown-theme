@@ -1,0 +1,77 @@
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+body {
+  background-color: #FCFCFB;
+  line-height: 1.75;
+}
+
+.markdown-preview.markdown-preview {
+  // 1. 全局与段落行间距增大（原 newsprint.css 为 1.5em，现增至 1.75，上下不再偏挤）
+  line-height: 1.75;
+
+  p {
+    line-height: 1.75;
+  }
+
+  // 2. 列表整体缩进减半（newsprint.css 原来 margin-left 1.5em + padding-left 40px ≈ 4em，整体缩进降低一半为 2em / 约两个中文字符）
+  //    二级嵌套列表也同样缩进 2em，其圆点恰好落在上级“2. 核心”的“心”字位置
+  ol, ul {
+    padding-left: 2em;
+    margin-left: 0;
+  }
+
+  // 3. 列表项行间距与间隙优化
+  li {
+    line-height: 1.75;
+    margin-bottom: 0.35em;
+
+    > p {
+      line-height: 1.75;
+    }
+
+    // 嵌套列表微调上下外边距，避免子列表底部空白过大
+    > ol, > ul {
+      margin-top: 0.35em;
+      margin-bottom: 0.35em;
+    }
+  }
+
+  // 任务复选框列表保持对齐
+  ul.task-list {
+    padding-left: 1.8em;
+  }
+
+  // 4. 修复代码块首行缩进问题
+  // 原因：newsprint.css 设置了 `body code { padding-left: 1ch; padding-right: 1ch; }`，但未在 `body pre code` 中清除内边距。
+  // 代码块中的 <code> 作为行内元素跨行渲染时，浏览器只在首行左侧保留 1ch 边距，导致首行呈现类似缩进一个字符的假象。
+  pre {
+    text-indent: 0;
+
+    code {
+      padding-left: 0;
+      padding-right: 0;
+      text-indent: 0;
+    }
+  }
+
+  // 5. 修复 Mermaid 节点与连线文字溢出边界问题
+  // 原因：Mermaid 渲染时会将文字包裹在 <span class="nodeLabel"><p>...</p></span> 内。
+  // 上方 `.markdown-preview p { line-height: 1.75 }` 直接命中了内层 <p>，在 CSS 规则中直接命中子元素的样式永远优先于父元素 (.nodeLabel) 的继承值（即使父元素带 !important），
+  // 导致实际渲染行高 (1.75) 大于 Mermaid 在 body 下测量外框时的行高 (1.5)，多行累加后底部溢出。
+  .mermaid {
+    line-height: 1.4;
+
+    foreignObject {
+      overflow: visible !important;
+    }
+
+    p,
+    .nodeLabel,
+    .edgeLabel,
+    .label {
+      line-height: 1.4 !important;
+      margin: 0 !important;
+    }
+  }
+}

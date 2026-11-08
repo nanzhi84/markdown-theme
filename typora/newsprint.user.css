@@ -1,0 +1,116 @@
+/* ==========================================================================
+ * Typora Custom Theme Override: newsprint.user.css
+ * 同步自 VS Code Markdown Preview Enhanced (newsprint.css + style.less)
+ * ========================================================================== */
+
+:root {
+  --bg-color: #FCFCFB;
+}
+
+/* 1. 全局背景色 (#FCFCFB) 与行间距 (1.75) */
+html,
+body {
+  background-color: #FCFCFB;
+  line-height: 1.75;
+}
+
+/* 同步 Typora 侧边栏、标题栏、弹窗与复选框底色 */
+#typora-sidebar,
+.modal-content,
+.megamenu-menu,
+#top-titlebar,
+#top-titlebar *,
+.megamenu-content,
+#write div.md-toc-tooltip,
+.md-task-list-item > input:before {
+  background-color: #FCFCFB;
+}
+
+#write {
+  line-height: 1.75;
+}
+
+#write p {
+  line-height: 1.75;
+}
+
+/* 2. 列表整体缩进减半（原 newsprint 约 4em，现统一为 2em / 约两个中文字符） */
+#write ol,
+#write ul {
+  padding-left: 2em;
+  margin-left: 0;
+}
+
+/* 3. 列表项行间距与间隙优化 */
+#write li {
+  line-height: 1.75;
+  margin-bottom: 0.35em;
+}
+
+#write li > p {
+  line-height: 1.75;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 嵌套列表微调上下外边距，避免子列表底部空白过大 */
+#write li > ol,
+#write li > ul {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+/* 任务复选框列表保持对齐 */
+#write ul.task-list,
+#write .task-list {
+  padding-left: 1.8em;
+}
+
+/* 对齐 MPE newsprint.css 的引用块底色与行内代码内边距 */
+#write blockquote {
+  background-color: #e6e4dc;
+}
+
+#write code {
+  padding-left: 1ch;
+  padding-right: 1ch;
+}
+
+/* 4. 修复代码块首行缩进问题 */
+#write pre,
+#write .md-fences {
+  text-indent: 0;
+}
+
+#write pre code {
+  padding-left: 0;
+  padding-right: 0;
+  text-indent: 0;
+}
+
+/* 5. 修复 Mermaid 节点与连线文字溢出边界问题
+ * 避免 #write p { line-height: 1.75 } 命中 Mermaid <span class="nodeLabel"><p>...</p></span>
+ * 导致实际渲染行高大于测量外框行高而纵向溢出 */
+#write .mermaid,
+#write .md-diagram-panel,
+#write pre[lang="mermaid"] {
+  line-height: 1.4;
+}
+
+#write .mermaid foreignObject,
+#write .md-diagram-panel foreignObject,
+#write pre[lang="mermaid"] foreignObject {
+  overflow: visible !important;
+}
+
+#write .mermaid p,
+#write .mermaid .nodeLabel,
+#write .mermaid .edgeLabel,
+#write .mermaid .label,
+#write .md-diagram-panel p,
+#write .md-diagram-panel .nodeLabel,
+#write .md-diagram-panel .edgeLabel,
+#write .md-diagram-panel .label {
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
