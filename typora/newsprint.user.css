@@ -7,6 +7,11 @@
 html,
 body {
   --bg-color: #F7F3E6 !important;
+  --active-file-bg-color: #dadada !important;
+  --active-file-text-color: #1f0909 !important;
+  --active-file-border-color: #777777 !important;
+  --item-hover-bg-color: rgba(218, 218, 218, 0.6) !important;
+  --item-hover-text-color: #1f0909 !important;
 }
 
 /* 1. 全局背景色（纸张米黄色 #F7F3E6）、字体渲染与行间距 (1.75)
@@ -25,11 +30,11 @@ body,
   line-height: 1.75;
 }
 
-/* 同步 Typora 侧边栏、标题栏、弹窗与复选框底色 */
+/* 同步 Typora 侧边栏、标题栏、弹窗与复选框底色
+ * 注意：不要给 #file-library / #file-library-tree 设置不透明背景，
+ * 因为选中行背景 .file-node-background 的 z-index 为 -1，设在父容器上会遮住灰色选中条 */
 #typora-sidebar,
 .sidebar-menu,
-#file-library,
-#file-library-tree,
 .modal-content,
 .megamenu-menu,
 #top-titlebar,
@@ -38,6 +43,24 @@ body,
 #write div.md-toc-tooltip,
 .md-task-list-item > input:before {
   background-color: #F7F3E6 !important;
+}
+
+/* 左侧文件树与文件列表：正常浅灰底选中条 (#dadada) + 深色文字 (#1f0909)，替代原主题突兀的纯白字 */
+.file-tree-node.active > .file-node-background,
+.file-library-node.active > .file-node-background {
+  background-color: #dadada !important;
+  border-left: 4px solid #777777 !important;
+}
+
+.file-tree-node.active > .file-node-content,
+.file-list-item.active {
+  color: #1f0909 !important;
+  font-weight: 600;
+}
+
+.file-node-content:hover {
+  background-color: rgba(218, 218, 218, 0.5);
+  border-radius: 3px;
 }
 
 #write p {
