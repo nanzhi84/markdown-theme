@@ -6,7 +6,7 @@
 :root,
 html,
 body {
-  --bg-color: #F7F3E6 !important;
+  --bg-color: #FFFFFF !important;
   --active-file-bg-color: #dadada !important;
   --active-file-text-color: #1f0909 !important;
   --active-file-border-color: #777777 !important;
@@ -14,7 +14,7 @@ body {
   --item-hover-text-color: #1f0909 !important;
 }
 
-/* 1. 全局背景色（纸张米黄色 #F7F3E6）、字体渲染与行间距 (1.75)
+/* 1. 全局背景色（纯白色 #FFFFFF）、字体渲染与行间距 (1.75)
  * - 使用 !important 覆盖 Typora macOS 启动时 initBackground 注入到 body.style 的缓存内联背景色
  * - 还原 -webkit-font-smoothing: auto（覆盖 Typora newsprint.css 默认的 antialiased 细字渲染）
  * - 字体对齐 VS Code MPE：英文/数字使用 PT Serif 衬线体，中文回退到系统黑体（PingFang SC），避免 Typora 末尾 serif 强制将中文变成细扁宋体 */
@@ -25,7 +25,7 @@ html {
 html,
 body,
 #write {
-  background-color: #F7F3E6 !important;
+  background-color: #FFFFFF !important;
   font-family: 'PT Serif', 'Times New Roman', Times, 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.75;
 }
@@ -42,7 +42,7 @@ body,
 .megamenu-content,
 #write div.md-toc-tooltip,
 .md-task-list-item > input:before {
-  background-color: #F7F3E6 !important;
+  background-color: #FFFFFF !important;
 }
 
 /* 左侧文件树与文件列表：正常浅灰底选中条 (#dadada) + 深色文字 (#1f0909)，替代原主题突兀的纯白字 */
